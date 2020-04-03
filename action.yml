@@ -6,13 +6,7 @@ branding:
 runs:
   using: docker
   image: Dockerfile
-  args:
-    - INPUT_SONARSCANNERVERSION=${{ inputs.sonarScannerVersion }}
 inputs:
-  sonarScannerVersion:
-    description: Set the desired sonar-scanner version
-    required: false
-    default: 3.3.0.1492
   projectBaseDir:
     description: Set the sonar.projectBaseDir analysis property
     required: false
