@@ -7,7 +7,7 @@ runs:
   using: docker
   image: Dockerfile
   args:
-    - ${{ inputs.who-to-greet }}
+    - INPUT_SONARSCANNERVERSION=${{ inputs.sonarScannerVersion }}
 inputs:
   sonarScannerVersion:
     description: Set the desired sonar-scanner version
