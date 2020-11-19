@@ -41,6 +41,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        # Disabling shallow clone is recommended for improving relevancy of reporting
+        fetch-depth: 0
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
@@ -55,6 +58,26 @@ uses: sonarsource/sonarcloud-github-action@master
 with:
   projectBaseDir: my-custom-directory
 ```
+
+In case you need to add additional analysis parameters, you can use the `args` option:
+
+```yaml
+- name: Analyze with SonarCloud
+  uses: sonarsource/sonarcloud-github-action@master
+  with:
+    projectBaseDir: my-custom-directory
+    args: >
+      -Dsonar.organization=my-organization
+      -Dsonar.projectKey=my-projectkey
+      -Dsonar.python.coverage.reportPaths=coverage.xml
+      -Dsonar.sources=lib/
+      -Dsonar.test.exclusions=tests/**
+      -Dsonar.tests=tests/
+      -Dsonar.verbose=true
+```
+
+More information about possible analysis parameters is found in the documentation at:
+https://sonarcloud.io/documentation/analysis/analysis-parameters/
 
 ### Secrets
 
